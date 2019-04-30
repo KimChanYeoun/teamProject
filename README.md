@@ -21,7 +21,7 @@
 	Tool: Spring tool suite 3.9.5, Sqldeveloper, eXERD (E-R Modeling Tool)
 
 	Open Source: jQuery v3.3.1, jQuery UI v.1.12.1, cos-26Dec2008 ,
-                 jquery-ui-1.11.4,   jquery-easyui-1.4.5,Sementic ui, 다음지도 API
+                 jquery-ui-1.11.4, jquery-easyui-1.4.5, Sementic ui, 다음지도 API
 
 - 프로젝트 실행 녹화화면 - https://youtu.be/cFQ2k5kih4g
 
