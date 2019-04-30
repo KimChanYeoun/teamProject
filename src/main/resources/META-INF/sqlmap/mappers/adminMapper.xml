@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kubg.mappers.adminMapper">
+    
+	<!-- 매점상품 등록 -->
+	<insert id="writeItem">	
+	   	INSERT INTO ITEM VALUES
+    	(ITEM_SEQ.NEXTVAL, #{itemName}, #{itemImage}, #{itemPrice})
+	</insert>
+ 
+	<!-- 매점상품 목록 -->	
+	<select id="listItem" resultType="com.tj.mac.model.item">
+		SELECT * FROM ITEM
+	</select>
+	
+	<!-- 매점상품 수정 -->
+	<update id="modifyItem">
+		 UPDATE ITEM SET
+		    ItemName=#{itemName},
+		    ItmeImage=#{itemImage},
+		    ItemPrice=#{itemPrice}
+		 WHERE ItemNo=#{itemNo}
+	</update>
+	
+	<!-- 매점상품 삭제 -->
+	<delete id="deleteItem">
+		DELETE FROM ITEM WHERE ItemNo=#{itemNo}
+	</delete>
+	
+	<!-- 사용자의 매점 주문목록 -->
+	<select id="listPurchase" resultType="com.tj.mac.model.purchase">
+		SELECT * FROM PURCHASE
+	</select>
+	
+		 
+</mapper>

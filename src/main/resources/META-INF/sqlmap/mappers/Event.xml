@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Event">
+	<resultMap type="Event" id="EventResult">
+		<result column="eventNo" property="eventNo"/>
+		<result column="eventTitle" property="eventTitle"/>
+		<result column="eventFile" property="eventFile"/>
+		<result column="eventReadCount" property="eventReadCount"/>
+		<result column="eventDate" property="eventDate"/>
+	</resultMap>
+	<select id="eventListAll" resultMap="EventResult">
+		SELECT * FROM EVENT ORDER BY EVENTDATE DESC
+	</select>
+	<select id="eventListPaging" parameterType="Event" resultMap="EventResult">
+		SELECT * FROM(SELECT ROWNUM RN, A.*
+		 	FROM(SELECT * FROM EVENT ORDER BY EventNo DESC) A)
+    	WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	<insert id="writeEvent" parameterType="Event">
+		INSERT INTO EVENT VALUES
+    	(EVENT_SEQ.NEXTVAL, #{eventTitle}, #{eventFile}, 0, SYSDATE)
+	</insert>
+	<select id="detailEvent" parameterType="int" resultType="Event">
+		SELECT * FROM EVENT WHERE EventNo=#{eventNo}
+	</select>
+	<select id="modifyEvent" parameterType="Event">
+		UPDATE EVENT SET
+   	 		EventTitle=#{eventTitle},
+    		EventFile=#{eventFile},
+    		EventDate=SYSDATE,
+    		EventReadCount = 0
+    		WHERE EventNo=#{eventNo}
+	</select>
+	<select id="ReadcountEvent" resultType="int">
+		UPDATE EVENT SET EventReadCount = #{eventReadCount}+1 WHERE EventNo=#{eventNo}
+	</select>
+	<select id="deleteEvent" parameterType="int">
+		DELETE FROM EVENT WHERE EventNo=#{eventNo}
+	</select>
+	<select id="countEvent" resultType="int">
+		SELECT COUNT(*) FROM EVENT
+	</select>
+</mapper>

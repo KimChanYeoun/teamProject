@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Item">
+	<resultMap type="Item" id="ItemResult">
+		<result column="itemNo" property="itemNo"/>
+		<result column="itemName" property="itemName"/>
+		<result column="itemImage" property="itemImage"/>
+		<result column="itemPrice" property="itemPrice"/>
+		<result column="getItem" property="getItem"/>
+	</resultMap>
+	<select id="listItem" resultMap="ItemResult">
+		SELECT * FROM ITEM
+	</select>
+	<select id="listItemPaging" parameterType="Item" resultMap="ItemResult">
+		SELECT * FROM
+    		(SELECT ROWNUM RN, A.* FROM
+        		(SELECT * FROM ITEM ORDER BY ItemNo DESC) A)
+    	WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	<select id="writeItem" parameterType="Item">
+		INSERT INTO ITEM VALUES
+    		(ITEM_SEQ.NEXTVAL, #{itemName}, #{itemImage}, #{itemPrice})
+	</select>
+	<select id="detailItem" parameterType="int" resultType="Item">
+		SELECT * FROM ITEM WHERE ItemNo=#{itemNo}
+	</select>
+	<select id="modifyItem" parameterType="Item">
+		UPDATE ITEM SET
+		    ItemName=#{itemName},
+		    <if test="itemImage!=''">
+		    	ItemImage=#{itemImage},
+		    </if>
+		    ItemPrice=#{itemPrice}
+		    WHERE ItemNo=#{itemNo}
+	</select>
+	<select id="deleteItem" parameterType="int">
+		DELETE FROM ITEM WHERE ItemNo=#{itemNo}
+	</select>
+	<select id="countItem" resultType="int">
+		SELECT COUNT(*) FROM ITEM
+	</select>
+	<select id="getItem" parameterType="int" resultType="Item">
+		SELECT * FROM ITEM WHERE ITEMNO = #{ITEMNO}
+	</select>
+	<select id="countgetItem" resultType="int">
+		SELECT COUNT(*) FROM ITEM
+	</select>
+</mapper>

@@ -1,0 +1,190 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-style: none;
+}
+
+.back_wrap {
+	width: 100%;
+	background-color: #f2f2f2;
+}
+
+.content_info {
+	height: 50px;
+	line-height: 50px;
+	background-color: #dad9d7;
+}
+
+.select {
+	margin: 0 auto;
+	width: 1250px;
+	overflow: hidden;
+}
+
+.select ul li {
+	color: #333333;
+	font-weight: bold;
+}
+
+.select ul li:hover {
+	color: #59bec9;
+	font-weight: bold;
+}
+
+.content_info ul li {
+	float: left;
+	margin: 0 0.6%;
+}
+
+.Qnalist_wrap {
+	width: 950px;
+	margin: 0 auto;
+	padding: 50px auto;
+	height: 100%;
+}
+
+.serch_menu {
+	height: 2%;
+	line-height: 2%;
+}
+
+.serch_menu {
+	height: 2%;
+	line-height: 2%;
+}
+
+.serch_menu a {
+	color: #4c4c4c;
+}
+
+.serch_menu a:hover {
+	color: #a7b496;
+	font-weight: bold;
+}
+
+.serch_ment input[type=submit] {
+	border-radius: 4px;
+	background-color: #5c0880;
+	width: 6%;
+	height: 3%;
+}
+
+.list_Form {
+	margin: 2% 0 0 0;
+	width: 100%;
+	text-align: center;
+	border-top: 3px solid #351f66;
+	border-bottom: 3px solid #351f66;
+	text-align: center;
+}
+
+
+.list_Form img {
+	width: 25px;
+	height: 25px;
+}
+
+.list_Form a {
+	border-color: #351f66;
+	border-radius: 5px;
+}
+
+.list_Form table {
+	width: 100%;
+	padding: 0.4%;
+	color: #8a8b8d;
+	font-size: 1.1em;
+}
+
+.cook:hover {
+	background-color: #c6c6c6;
+	font-weight: bold;
+}
+
+.list_Form .num_size {
+	margin: 1% 4% 0.5% 0;
+	border-bottom: 1px solid gray;
+	width: 8%;
+	height: 30px;
+	line-height: 25px;
+	border-bottom: 1px solid gray;
+}
+
+.list_Form .hit_size {
+	margin: 0.5% 1%;
+	border-bottom: 1px solid gray;
+	width: 10%;
+}
+
+.list_Form .write_name {
+	margin: 0.5% 1%;
+	border-bottom: 1px solid gray;
+	width: 10%;
+}
+
+.list_Form .write_date {
+	margin: 0.5% 1%;
+	border-bottom: 1px solid gray;
+	width: 14%;
+}
+
+.title_size {
+	margin: 0.5% 1%;
+	width: 50%;
+	text-align: left;
+}
+
+.paging {
+	padding: 20px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+
+.bottom_var {
+	padding: 20px 0;
+	width: 100%;
+	height: 120px;
+	overflow: hidden;
+}
+
+.bottom_var a {
+	width: 45px;
+	height: 30px;
+	line-height: 30px;
+	border: 1px ridge white;
+	border-radius: 5px;
+	background-color: #351f66;
+	color: white;
+}
+
+.bottom_var ul li {
+	float: left;
+	padding: 1.2%;
+	width: 30%;
+	height: 70px;
+	font-size: 1.1em;
+	border-left: 1px solid #5c0880;
+	border-right: 1px solid #5c0880;
+}
+
+.bottom_var ul li:nth-child(1) {
+	margin: 0 0 0 1%;
+}
+
+.bottom_var img {
+	width: 30px;
+	height: 30px;
+}
+
+.content_look {
+	text-align: right;
+}
+
+.content_look img {
+	width: 10px;
+	height: 10px;
+}

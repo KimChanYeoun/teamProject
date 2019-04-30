@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Notice">
+	<resultMap type="Notice" id="NoticeResult">
+		<result column="noticeNo" property="noticeNo" />
+		<result column="noticeTitle" property="noticeTitle" />
+		<result column="noticeContent" property="noticeContent" />
+		<result column="noticeFile" property="noticeFile" />
+		<result column="noticeReadCount" property="noticeReadCount" />
+		<result column="noticeDate" property="noticeDate" />
+	</resultMap>
+	<select id="noticeList" parameterType="Notice"
+		resultMap="NoticeResult">
+		SELECT * FROM (SELECT ROWNUM RN, A.*
+		FROM (SELECT * FROM
+		Notice order by NoticeNo DESC) A)
+		WHERE RN BETWEEN #{startRow} AND
+		#{endRow}
+	</select>
+	<select id="noticeDetail" parameterType="int"
+		resultType="Notice">
+		SELECT *
+		FROM Notice WHERE NoticeNo=#{noticeNo}
+	</select>
+	<insert id="writerNotice" parameterType="Notice">
+		<if test="noticeFile!=''">
+			INSERT INTO Notice (NoticeNo, NoticeTitle, NoticeContent,
+			NoticeFile) VALUES
+			(NOTICESEQUENCE.NEXTVAL,
+			#{noticeTitle},#{noticeContent},#{noticeFile})
+		</if>
+		<if test="noticeFile==''">
+			INSERT INTO Notice (NoticeNo, NoticeTitle, NoticeContent)
+			VALUES
+			(NOTICESEQUENCE.NEXTVAL, #{noticeTitle},#{noticeContent})
+		</if>
+	</insert>
+	<update id="modifyNotice" parameterType="Notice">
+		UPDATE Notice SET
+		NoticeTitle=#{noticeTitle},
+		NoticeContent=#{noticeContent}
+		<if test="noticeFile!=''">,NoticeFile=#{noticeFile}</if>
+		WHERE NoticeNo=#{noticeNo}
+	</update>
+	<update id="readCountNotice" parameterType="Notice">
+		UPDATE Notice SET NoticeReadCount = NoticeReadCount +1 
+		WHERE NoticeNo=#{noticeNo}
+	</update>
+	<delete id="deleteNotice" parameterType="int">
+		DELETE FROM Notice WHERE NoticeNo=#{noticeNo}
+	</delete>
+	<select id="noticeCount" resultType="int">
+		SELECT COUNT(*) FROM NOTICE
+	</select>
+	<select id="noticeNext" parameterType="int"
+		resultType="Notice">
+		SELECT * FROM NOTICE WHERE NoticeNo=(SELECT MIN(NoticeNo) FROM NOTICE WHERE NoticeNo > #{noticeNo})
+	</select>
+	<select id="noticeBefore" parameterType="int"
+		resultType="Notice">
+		SELECT * FROM NOTICE WHERE NoticeNo=(SELECT MAX(NoticeNo) FROM NOTICE WHERE NoticeNo &lt; #{noticeNo})
+	</select>
+</mapper>

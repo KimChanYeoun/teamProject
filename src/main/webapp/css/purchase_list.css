@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+.purchase_listWrap {
+	width: 100%;
+	background-color: #f2f2f2;
+}
+
+.content_info {
+	height: 50px;
+	line-height: 50px;
+	background-color: #dad9d7;
+}
+
+.select {
+	margin: 0 auto;
+	width: 1250px;
+	overflow: hidden;
+}
+
+.select ul li {
+	color: #333333;
+	font-weight: bold;
+}
+
+.select ul li:hover {
+	color: #59bec9;
+	font-weight: bold;
+}
+
+.content_info ul li {
+	float: left;
+	margin: 0 0.6%;
+}
+
+.purchase_title {
+	padding: 30px 0 10px 0;
+	width: 1200px;
+	margin: 0 auto;
+	border-bottom: 3px solid #666666;
+}
+
+.purchase_form {
+	padding: 10px;
+	margin: 0 auto;
+	width: 950px;
+}
+
+.purchase_form img {
+	width: 200px;
+	height: 250px;
+}
+
+.purchase_form table {
+	padding: 10px;
+	display: inline-block;
+}
+
+.totInfo {
+	border: 1px solid black;
+	padding: 10px;
+	width: 600px;
+	margin: 0 auto;
+	text-align: right;
+	width: 600px;
+}
+
+.totInfo table tr:nth-child(1) td:nth-child(1) {
+	text-align:center;
+	width: 400px;
+	border-radius:5px;
+	background-color: #351f66;
+	font-weight: bold;
+}
+.totInfo table a{
+ color: white;	
+}
+
+.totInfo table tr td:nth-child(2) {
+	width: 80px;
+}
+
+.totInfo table tr td:nth-child(3) {
+	width: 130px;
+}
+
+#content button {
+	width: 150px;
+	line-height: 50px;
+	height: 50px;
+	color: white;
+	font-weight: bold;
+	font-size: 1.2em;
+	background-color: #351f66;
+	border: 1px solid #a7b496;
+	border-radius: 10px;
+}

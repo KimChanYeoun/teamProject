@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Booking">
+	<resultMap type="Booking" id="BookingResult">
+		<result column="movieNo" property="movieNo"/>
+		<result column="movieName" property="movieName"/>
+		<result column="screenName" property="screenName"/>
+		<result column="bookingNo" property="bookingNo"/>
+		<result column="screenupNo" property="screenupNo"/>
+		<result column="memberId" property="memberId"/>
+		<result column="timeNo" property="timeNo"/>
+		<result column="bookingDate" property="bookingDate"/>
+		<result column="bookingCount" property="bookingCount"/>
+		<result column="bookingPrice" property="bookingPrice"/>
+		<result column="seatNo" property="seatNo"/>
+	</resultMap>
+	<insert id="insertBooking" parameterType="Booking">
+		INSERT INTO BOOKING VALUES
+			(BOOKING_SEQ.NEXTVAL,
+			#{screenupNo},
+			#{memberId},
+			#{timeNo},
+			#{bookingDate},
+			#{bookingCount},
+			#{bookingPrice})
+	</insert>
+	<delete id="deleteBooking" parameterType="int">
+		DELETE FROM BOOKING WHERE BOOKINGNO=#{bookingNo}
+	</delete>
+	<select id="getBooking" parameterType="int" resultType="Booking">
+		SELECT M.MOVIENO, M.MOVIENAME, S.SCREENNAME, B.*, BS.SEATNO FROM
+			MOVIE M, SCREEN S, SCREENUP SU, BOOKING B, BOOKINGSEAT BS
+    			WHERE M.MOVIENO=SU.MOVIENO
+    				AND S.SCREENNO=SU.SCREENNO
+    				AND SU.SCREENUPNO=B.SCREENUPNO
+    				AND B.BOOKINGNO=BS.BOOKINGNO
+    				AND B.BOOKINGNO=#{bookingNo}
+	</select>
+	<select id="getLastBookingNo" resultType="int">
+		SELECT BOOKINGNO FROM (SELECT B.*, ROWNUM RN FROM (SELECT * FROM BOOKING ORDER BY BOOKINGNO DESC) B) WHERE RN=1
+	</select>
+	<update id="usePoint" parameterType="Booking">
+		UPDATE MEMBER SET MEMBERPOINT=MEMBERPOINT-#{usePoint} WHERE MEMBERID=#{memberId}
+	</update>
+	<update id="savePoint" parameterType="Booking">
+		UPDATE MEMBER SET
+		<if test="memberGradeNo==0">
+			MEMBERPOINT=MEMBERPOINT+(#{resultPrice}/20)
+		</if>
+		<if test="memberGradeNo==1">
+			MEMBERPOINT=MEMBERPOINT+(#{resultPrice}/10)
+		</if>
+		WHERE MEMBERID=#{memberId}
+	</update>
+	<update id="accumulateAmount" parameterType="Booking">
+		UPDATE MEMBER SET MEMBERAMOUNT=MEMBERAMOUNT+#{bookingPrice} WHERE MEMBERID=#{memberId}
+	</update>
+	<update id="upMemberGrade" parameterType="String">
+		UPDATE MEMBER SET MEMBERGRADENO='VIP' WHERE MEMBERID=#{memberId} AND MEMBERGRADENO='NORMAL' AND MEMBERAMOUNT>=200000
+	</update>
+</mapper>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberInfo">
+	<resultMap type="MemberInfo" id="MemberInfoResult">
+		<result property="memberId" column="memberId" />
+		<result property="itemNo" column="itemNo" />
+		<result property="itemName" column="itemName" />
+		<result property="itemImage" column="itemImage" />
+		<result property="itemPrice" column="itemPrice" />
+		<result property="purchaseNo" column="purchaseNo" />
+		<result property="purchasePrice" column="purchasePrice" />
+		<result property="purchaseDate" column="purchaseDate" />
+		<result property="purchaseItemNo" column="purchaseItemNo" />
+		<result column="movieName" property="movieName" />
+		<result property="bookingNo" column="bookingNo" />
+		<result property="screenupNo" column="screenupNo" />
+		<result column="movieImage" property="movieImage" />
+		<result property="timeNo" column="timeNo" />
+		<result property="bookingDate" column="bookingDate" />
+		<result property="bookingCount" column="bookingCount" />
+		<result property="bookingPrice" column="bookingPrice" />
+		<result property="seatNo" column="seatNo" />
+		<result property="qnaNo" column="qnaNo" />
+		<result property="qnaTitle" column="qnaTitle" />
+		<result property="qnaContent" column="qnaContent" />
+		<result property="qnaFile" column="qnaFile" />
+		<result property="qnaHit" column="qnaHit" />
+		<result property="qnaDate" column="qnaDate" />
+		<result property="qnanoPw" column="qnanoPw" />
+		<result property="qnaGroup" column="qnaGroup" />
+		<result property="qnaStep" column="qnaStep" />
+		<result property="qnaIndent" column="qnaIndent" />
+		<result property="adminId" column="adminId" />
+		<result property="memberName" column="memberName" />
+	</resultMap>
+	<select id="myItem" parameterType="String"
+		resultMap="MemberInfoResult">
+		SELECT * FROM (SELECT ROWNUM RN, A.* FROM
+		(select * from PURCHASE where memberid=#{memberId,
+		jdbcType=VARCHAR} ORDER BY
+		purchase.purchaseno DESC) A)
+		WHERE rn BETWEEN 1 AND 5
+	</select>
+
+	<select id="myItemList" parameterType="MemberInfo"
+		resultMap="MemberInfoResult">
+		SELECT * FROM (SELECT ROWNUM RN, A.* FROM
+		(select * from PURCHASE where memberid=#{memberId,
+		jdbcType=VARCHAR} ORDER BY
+		purchase.purchaseno DESC) A)
+		WHERE rn BETWEEN #{startRow} AND #{endRow}
+	</select>
+
+	<select id="myItemCnt" parameterType="string" resultType="int">
+		SELECT
+		COUNT(*) FROM purchase where memberId=#{memberId, jdbcType=VARCHAR}
+	</select>
+
+	<select id="myItemPurchase" parameterType="int"
+		resultMap="MemberInfoResult">		
+		SELECT PI.*, i.itemname FROM purchaseitem PI, item I
+		WHERE pi.itemno=i.itemno and Pi.purchaseno=#{purchaseNo}
+	</select>
+
+	<select id="myMovie" parameterType="String"
+		resultMap="MemberInfoResult">
+		select rownum, a.* from (select b.*, a.moviename,
+		a.movieimage from
+		booking b, (select m.*, su.screenupno from screenup
+		su, movie m where su.movieno=m.movieno) a
+		where
+		b.screenupno=a.screenupno and
+		memberid=#{memberId, jdbcType=VARCHAR}
+		order by
+		bookingno desc) a WHERE ROWNUM BETWEEN 1 AND 5
+	</select>
+
+	<select id="myMovieList" parameterType="MemberInfo"
+		resultMap="MemberInfoResult">
+		select * from (select rownum rn, a.* from (select b.*,
+		a.moviename,
+		a.movieimage from
+		booking b, (select m.*, su.screenupno
+		from screenup
+		su, movie m where su.movieno=m.movieno) a
+		where
+		b.screenupno=a.screenupno and
+		memberid=#{memberId, jdbcType=VARCHAR}
+		order by bookingno desc) a) WHERE rn BETWEEN #{startRow} AND #{endRow}
+	</select>
+
+	<select id="myMovieSeat" parameterType="int"
+		resultMap="MemberInfoResult">
+		SELECT seatno FROM BOOKINGSEAT where bookingno=#{bookingNo}
+	</select>
+
+	<select id="myMovieCnt" parameterType="string" resultType="int">
+		select count(*) from booking where memberId=#{memberId,
+		jdbcType=VARCHAR}
+	</select>
+
+	<!-- 내가쓴 QNA불러오기 . -->
+	<select id="myQnA" parameterType="string"
+		resultMap="MemberInfoResult">
+		SELECT
+		ROWNUM, A.* FROM (SELECT * FROM QNA WHERE
+		MEMBERID=#{memberId} order
+		by qnano desc) A WHERE ROWNUM BETWEEN 1 AND
+		5
+
+	</select>
+
+	<select id="myQnAList" parameterType="MemberInfo"
+		resultMap="MemberInfoResult">
+
+		SELECT * FROM (SELECT ROWNUM RN, A.* FROM
+		(select q.*, m.memberName from qna
+		q, member m where m.memberid = q.memberid
+		and m.MEMBERID=#{memberId,
+		jdbcType=VARCHAR} order by qnano desc)
+		A) WHERE RN BETWEEN #{startRow}
+		AND #{endRow}
+	</select>
+
+	<select id="myQnACnt" parameterType="string" resultType="int">
+		SELECT
+		count(*) FROM QNA WHERE MEMBERID=#{memberId, jdbcType=VARCHAR}
+	</select>
+
+
+</mapper>

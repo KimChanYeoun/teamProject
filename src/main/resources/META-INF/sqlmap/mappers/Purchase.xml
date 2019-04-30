@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Purchase">
+	<resultMap type="Purchase" id="PurchaseResult">
+		<result column="purchaseNo" property="purchaseNo"/>
+		<result column="memberId" property="memberId"/>
+		<result column="purchasePrice" property="purchasePrice"/>
+		<result column="purchaseDate" property="purchaseDate"/>
+	</resultMap>
+	<select id="listPurchase" resultMap="PurchaseResult">
+		SELECT * FROM PURCHASE
+	</select>
+	<select id="addPurchase" parameterType="Purchase">
+		INSERT INTO PURCHASE VALUES
+    	(PURCHASE_SEQ.NEXTVAL, #{memberId}, #{purchasePrice}, SYSDATE)
+	</select>
+	<select id="getLastPurchaseNo" resultType="int">
+		SELECT PURCHASENO FROM (SELECT ROWNUM RN, P.* FROM (SELECT * FROM PURCHASE ORDER BY PURCHASENO DESC) P) WHERE RN=1
+	</select>
+</mapper>

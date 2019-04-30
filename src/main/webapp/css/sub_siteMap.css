@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sub_wrap {
+	background-color: #f2f2f2;
+}
+
+.content_info {
+	height: 50px;
+	line-height: 50px;
+	background-color: #dad9d7;
+}
+
+.select {
+	margin: 0 auto;
+	width: 1250px;
+	overflow: hidden;
+}
+
+.select ul li {
+	color: #333333;
+	font-weight: bold;
+}
+
+.select ul li:hover {
+	color: #59bec9;
+	font-weight: bold;
+}
+
+.content_info ul li {
+	float: left;
+	margin: 0 0.6%;
+}
+
+.Site_title {
+	padding: 30px 0 10px 0;
+	width: 1200px;
+	margin: 20px auto;
+	border-bottom: 3px solid #666666;
+}
+
+.sub_sitemap {
+	margin: 0 auto;
+	width: 66%;
+	overflow: hidden;
+}
+
+.sub_sitelist ul {
+	padding: 1%;
+	border-left: 1px solid gray;
+	border-right: 1px solid gray;
+	width: 22%;
+	height: 300px;
+	float: left;
+}
+
+.sub_sitelist ul li {
+	margin: 5px 0 0 20px;
+	font-size: 0.9em;
+}
+
+.sub_sitetitle {
+	top: 0px;
+	left: 0px;
+	width: 180px;
+	border: 3px solid black;
+	padding: 0 0 0 10px;
+	margin: 0 0 20px 0;
+	height: 40px;
+	line-height: 40px;
+	font-size: 1.1em;
+}

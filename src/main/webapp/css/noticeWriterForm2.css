@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+* {
+	top: 0;
+	list-style: none;
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+}
+
+#content {
+	width: 800px;
+	height: 500px;
+	margin: 30px auto;
+}
+
+#content table{
+	margin: 0 auto;
+	width: 750px;
+}
+
+#content table tr{
+	height: 40px;
+}
+
+#content table tr td{
+	padding-left: 10px;
+}
+
+#content table tr:first-child td input{
+	padding-left: 5px;
+	height: 20px;
+	font-size: 1.05em;
+}
+
+#content table tr:nth-child(3) td textarea{
+	padding: 5px 0 0 5px;;
+	font-size: 1.2em;
+	
+}
+
+#content table tr:last-child {
+	text-align: center;
+	height: 60px;
+}
+
+#content table tr:last-child input{
+	height: 30px;
+	font-weight: bold;
+}

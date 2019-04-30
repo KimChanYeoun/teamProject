@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+.item_listWrap {
+	width: 100%;
+}
+
+.content_info {
+	height: 50px;
+	line-height: 50px;
+	background-color: #dad9d7;
+}
+
+.select {
+	margin: 0 auto;
+	width: 1250px;
+	overflow: hidden;
+}
+
+.select ul li {
+	color: #333333;
+	font-weight: bold;
+}
+
+.select ul li:hover {
+	color: #59bec9;
+	font-weight: bold;
+}
+
+.content_info ul li {
+	float: left;
+	margin: 0 0.6%;
+}
+
+.item_title {
+	width: 1250px;
+	padding: 10px; margin : 20px auto;
+	border-bottom: 3px ridge #666666;
+	margin: 20px auto;
+}
+
+.content_form {
+	margin: 0 auto;
+	width: 1250px;
+	height: 650px;
+}
+
+#content {
+	padding: 10px;
+	width: 1200px;
+	margin: 30px auto;
+	text-align: center;
+}
+
+.pic {
+	margin: 0 20px 20px 20px;
+	width: 240px;
+	height: 295px;
+	display: inline-block;
+}
+
+.pic input[type=checkbox] {
+	text-align: right;
+}
+
+.pic img {
+	width: 220px;
+	height: 220px;
+}
+
+.submit_go {
+	margin: 0 auto;
+	width: 1250px;
+	height: 100px;
+	text-align: right;
+}
+
+.submit_go input[type=button] {
+	margin: 10px 10px; width : 200px;
+	height: 70px;
+	line-height: 70px;
+	color: white;
+	font-weight: bold;
+	font-size: 1.2em;
+	background-color: #351f66;
+	border: 1px solid #a7b496;
+	border-radius: 10px;
+}
+
+.submit_go input[type=checkbox] {
+	display: none;
+}
+
+.submit_go label {
+	margin: 10px 10px;
+	width: 200px;
+	height: 70px;
+	line-height: 70px;
+	color: white;
+	font-weight: bold;
+	font-size: 1.2em;
+	background-color: #351f66;
+	border: 1px solid #a7b496;
+	border-radius: 10px;
+	display: inline-block;
+	text-align: center;
+}
+
+.paging {
+	text-align: center;
+	margin: 5px auto;
+	width: 1250px;
+	height: 40px;
+	line-height: 40px;
+}
+.left{
+	text-align: left;
+}

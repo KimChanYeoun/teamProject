@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member">
+	<resultMap type="Member" id="MemberResult">
+		<result property="memberId" column="memberId" />
+		<result property="memberPw" column="memberPw" />
+		<result property="memberName" column="memberName" />
+		<result property="memberBirth" column="memberBirth" />
+		<result property="memberPhone" column="memberPhone" />
+		<result property="memberEmail" column="memberEmail" />
+		<result property="memberAddress" column="memberAddress" />
+		<result property="memberPost" column="memberPost" />
+		<result property="memberPoint" column="memberPoint" />
+		<result property="memberGradeNo" column="memberGradeNo" />
+		<result property="memberAmount" column="memberAmount" />
+		<result property="memberState" column="memberState" />
+		<result column="memberGradeNo" property="memberGradeNo" />
+		<result column="memberGradeName" property="memberGradeName" />
+	</resultMap>
+	<select id="memberList" parameterType="Member"
+		resultMap="MemberResult">
+		<if test="schItem=='memberId' and memberGradeName=='vip'">
+			SELECT * FROM (SELECT ROWNUM RN, A.*
+			FROM (SELECT m.*, MemberGradeName FROM MEMBER m, membergrade mg
+			WHERE m.MemberGradeNo=mg.MemberGradeNo and memberGradeName='VIP' and
+			memberId LIKE '%'||#{schWord}||'%' ORDER BY MemberName DESC ) A)
+			WHERE RN BETWEEN #{startRow} AND #{endRow}
+		</if>
+		<if test="schItem=='memberId' and memberGradeName=='normal'">
+			SELECT * FROM (SELECT ROWNUM RN, A.*
+			FROM (SELECT m.*, MemberGradeName FROM MEMBER m, membergrade mg
+			WHERE m.MemberGradeNo=mg.MemberGradeNo and memberGradeName='NORMAL' and
+			memberId LIKE '%'||#{schWord}||'%' ORDER BY MemberName DESC ) A)
+			WHERE RN BETWEEN #{startRow} AND #{endRow}
+		</if>
+		<if test="schItem=='memberPhone' and memberGradeName=='vip'">
+			SELECT * FROM (SELECT ROWNUM RN, A.*
+			FROM (SELECT m.*, MemberGradeName FROM MEMBER m, membergrade mg
+			WHERE m.MemberGradeNo=mg.MemberGradeNo and memberGradeName='VIP' and
+			memberPhone LIKE '%'||#{schWord}||'%' ORDER BY MemberName DESC ) A)
+			WHERE RN BETWEEN #{startRow} AND #{endRow}
+		</if>
+		<if test="schItem=='memberPhone' and memberGradeName=='normal'">
+			SELECT * FROM (SELECT ROWNUM RN, A.*
+			FROM (SELECT m.*, MemberGradeName FROM MEMBER m, membergrade mg
+			WHERE m.MemberGradeNo=mg.MemberGradeNo and memberGradeName='NORMAL' and
+			memberPhone LIKE '%'||#{schWord}||'%' ORDER BY MemberName DESC ) A)
+			WHERE RN BETWEEN #{startRow} AND #{endRow}
+		</if>
+		<if test="schItem=='' or schItem==null">
+			SELECT * FROM (SELECT ROWNUM RN, A.*
+			FROM (SELECT m.*, MemberGradeName FROM MEMBER m, membergrade mg
+			WHERE m.MemberGradeNo=mg.MemberGradeNo ORDER BY MemberName DESC ) A)
+			WHERE RN BETWEEN #{startRow} AND #{endRow}
+		</if>
+	</select>
+	<select id="memberTotal" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+	</select>
+	<select id="getMember" parameterType="String"
+		resultType="Member">
+		SELECT A.* FROM (SELECT m.*, MemberGradeName FROM MEMBER m,
+		MemberGrade mg WHERE m.MemberGradeNo=mg.MemberGradeNo AND
+		MemberId=#{memberId, jdbcType=VARCHAR}) A
+	</select>
+	<select id="getMemberName" parameterType="String"
+		resultType="Member">
+		SELECT A.* FROM (SELECT m.*, MemberGradeName FROM MEMBER m,
+		MemberGrade mg WHERE m.MemberGradeNo=mg.MemberGradeNo AND
+		memberName=#{memberName, jdbcType=VARCHAR}) A
+	</select>
+	<update id="memberGradeUpdate" parameterType="Member">
+		UPDATE MEMBER SET
+		MemberGradeNo=#{memberGradeNo} WHERE MemberId=#{memberId}
+	</update>
+	<select id="memberIdConfirm" parameterType="String"
+		resultType="int">
+		SELECT COUNT(*) FROM MEMBER WHERE MemberId=#{memberId,
+		jdbcType=VARCHAR}
+	</select>
+	<select id="callLogin" parameterType="String"
+		resultType="Member">
+		SELECT A.* FROM (SELECT m.*, MemberGradeName FROM MEMBER m,
+		MemberGrade mg
+		WHERE m.MemberGradeNo=mg.MemberGradeNo AND
+		MEMBERPHONE=#{memberPhone,
+		jdbcType=VARCHAR}) A
+	</select>
+	<insert id="joinMember" parameterType="Member">
+		INSERT INTO
+		MEMBER(MemberId, MemberPw, MemberName, MemberBirth, MemberPhone,
+		MemberEmail, MemberAddress, MemberPost)
+		VALUES(#{memberId},
+		#{memberPw}, #{memberName}, #{memberBirth}, #{memberPhone},
+		#{memberEmail}, #{memberAddress}, #{memberPost})
+	</insert>
+	<update id="modifyMember" parameterType="Member">
+		UPDATE MEMBER SET
+		MemberPw=#{memberPw},
+		MemberName=#{memberName},
+		MemberBirth=#{memberBirth},
+		MemberPhone=#{memberPhone},
+		MemberEmail=#{memberEmail},
+		MemberAddress=#{memberAddress},
+		MemberPost=#{memberPost}
+		WHERE
+		MemberId=#{memberId}
+	</update>
+	<update id="memberStop" parameterType="String">
+		UPDATE MEMBER SET
+		MemberState=1
+		WHERE MemberId=#{memberId, jdbcType=VARCHAR}
+	</update>
+	<update id="memberStart" parameterType="String">
+		UPDATE MEMBER SET
+		MemberState=0
+		WHERE MemberId=#{memberId, jdbcType=VARCHAR}
+	</update>
+	<select id="cntMember" parameterType="Member" resultType="int">
+		<if test="schItem=='memberId' and memberGradeName=='vip'">
+			SELECT COUNT(*) FROM(SELECT m.*, mg.membergradename FROM
+			MEMBER M, MEMBERGRADE MG
+			WHERE M.MEMBERGRADENO=MG.MEMBERGRADENO AND memberId LIKE
+			'%'||#{schWord}||'%' and mg.membergradename='VIP')
+		</if>
+		<if test="schItem=='memberId' and memberGradeName=='normal'">
+			SELECT COUNT(*) FROM(SELECT m.*, mg.membergradename FROM
+			MEMBER M, MEMBERGRADE MG
+			WHERE M.MEMBERGRADENO=MG.MEMBERGRADENO AND memberId LIKE
+			'%'||#{schWord}||'%' and mg.membergradename='NORMAL')
+		</if>
+		<if test="schItem=='memberPhone' and memberGradeName=='vip'">
+			SELECT COUNT(*) FROM(SELECT m.*, mg.membergradename FROM
+			MEMBER M, MEMBERGRADE MG
+			WHERE M.MEMBERGRADENO=MG.MEMBERGRADENO AND memberPhone LIKE
+			'%'||#{schWord}||'%' and mg.membergradename='VIP')
+		</if>
+		<if test="schItem=='memberPhone' and memberGradeName=='normal'">
+			SELECT COUNT(*) FROM(SELECT m.*, mg.membergradename FROM
+			MEMBER M, MEMBERGRADE MG
+			WHERE M.MEMBERGRADENO=MG.MEMBERGRADENO AND memberPhone LIKE
+			'%'||#{schWord}||'%' and mg.membergradename='NORMAL')
+		</if>
+		<if test="schItem=='' or schItem==null">
+			SELECT COUNT(*) FROM Member
+		</if>
+	</select>
+</mapper>

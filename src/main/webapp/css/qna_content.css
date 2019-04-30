@@ -1,0 +1,168 @@
+@charset "UTF-8";
+
+.content_wrap {
+	width: 100%;
+	background-color: #f2f2f2;
+}
+
+.content_info {
+	height: 50px;
+	line-height: 50px;
+	background-color: #dad9d7;
+}
+
+.select {
+	margin: 0 auto;
+	width: 1250px;
+	overflow: hidden;
+}
+
+.select ul li {
+	color: #333333;
+	font-weight: bold;
+}
+
+.select ul li:hover {
+	color: #59bec9;
+	font-weight: bold;
+}
+
+.content_info ul li {
+	float: left;
+	margin: 0 0.6%;
+}
+
+.content_back {
+	margin: 35px 300px 0 300px;
+	width: 1250px;
+	height: 750px;
+}
+
+.content {
+	width: 850px;
+	height: 500px;
+	background-color: #f2f2f2;
+	margin: auto;
+}
+
+.content table {
+	margin: 0 auto;
+	width: 700px;
+	height: 100%;
+	background-color: #f2f2f2;
+}
+
+.content table tr:nth-child(1) {
+	background-color: #dad9d7;
+	height: 30px;
+}
+
+.content table td:nth-child(1) {
+	vertical-align: top;
+}
+
+.content_mid {
+	background-color: #f2f2f2;
+	text-align: left;
+	border-bottom: 2px ridge #333333;
+}
+
+.content_left {
+	width: 430px;;
+	height: 30px;
+	line-height: 30px;
+}
+
+.content_right1 {
+	width: 150px;
+	height: 30px;
+	font-size: 0.9em;
+	line-height: 20px;
+}
+
+.content_right {
+	width: 100px;
+	height: 30px;
+	font-size: 0.9em;
+	line-height: 20px;
+	font-size: 0.9em
+}
+
+.content_content {
+	width: 100%;
+	height: 80%;
+	text-align: left;
+}
+
+.content .text {
+	width: 250px;
+}
+
+.content .img {
+	width: 400px;
+	height: 400px;
+}
+
+.content .img img {
+	width: 400px;
+	height: 400px;
+}
+
+.menu_bar {
+	width: 700px;
+	padding: 20px 5px;
+	border-bottom: 3px solid #4c4c4c;
+	overflow: hidden;
+	margin: 20px auto;
+}
+
+.menu_bar ul li {
+	float: right;
+	margin: 0 20px;
+	text-align: center;
+	width: 120px;
+	height: 50px;
+	line-height: 50px;
+	background-color: #351f66;
+	border-radius: 5px;
+	font-weight: bold;
+	margin: 0 25px;
+}
+
+.menu_bar ul li a {
+	font-weight: bold;
+	color: white;
+}
+
+.bottom_bar {
+	width: 700px;
+	height: 80px;
+	margin: 0 auto;
+}
+.bottom_bar img{
+	width: 25px;
+	height: 25px;
+}
+
+.bottom_bar table tr:nth-child(1) {
+	background: #f2f2f2;
+}
+
+.bottom_bar td:nth-child(1), td:nth-child(4) {
+	width: 90px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.bottom_bar td:nth-child(2), th:nth-child(5) {
+	width: 450px;
+}
+
+.bottom_bar td:nth-child(3), th:nth-child(6) {
+	width: 150px;
+	text-align: right;
+}
+
+.var_right {
+	text-align: right;
+}

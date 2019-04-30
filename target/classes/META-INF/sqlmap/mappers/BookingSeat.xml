@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BookingSeat">
+	<resultMap type="BookingSeat" id="BookingSeatResult">
+		<result column="bookingSeatNo" property="bookingSeatNo"/>
+		<result column="bookingNo" property="bookingNo"/>
+		<result column="seatNo" property="seatNo"/>
+	</resultMap>
+	<insert id="insertBookingSeat" parameterType="BookingSeat">
+		INSERT INTO BOOKINGSEAT VALUES (BOOKINGSEAT_SEQ.NEXTVAL, #{bookingNo}, #{seatNo})
+	</insert>
+	<delete id="deleteBookingSeat" parameterType="int">
+		DELETE FROM BOOKINGSEAT WHERE BOOKINGNO=#{bookingNo}
+	</delete>
+</mapper>

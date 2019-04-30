@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+* {
+	top: 0;
+	list-style: none;
+}
+
+.notice_listdetail {
+	width: 100%;
+	padding-bottom:40px;
+	background-color: #f2f2f2;
+}
+
+.content_info {
+	height: 50px;
+	line-height: 50px;
+	background-color: #dad9d7;
+}
+
+.select {
+	margin: 0 auto;
+	width: 1250px;
+	overflow: hidden;
+}
+
+.select ul li {
+	color: #333333;
+	font-weight: bold;
+}
+
+.select ul li:hover {
+	color: #59bec9;
+	font-weight: bold;
+}
+
+.content_info ul li {
+	float: left;
+	margin: 0 0.6%;
+}
+
+.detail_title {
+	padding: 30px 0 10px 0;
+	width: 1200px;
+	margin: 0 auto;
+	border-bottom: 3px solid #666666;
+}
+
+caption:first-child {
+	font-size: 1.5em;
+	font-weight: bold;
+	text-align: left;
+	margin-top: 50px;
+	margin-bottom: 10px;
+}
+
+caption:nth-child(2) {
+	text-align: left;
+	margin-bottom: 20px;
+}
+
+#content {
+	width: 800px;
+	margin: 0 auto;
+}
+
+#content table {
+	padding:10px;
+	margin: 0 auto;
+	border-spacing: 0px;
+	width: 800px;
+}
+
+#content table:nth-child(2) {
+	padding:5px;
+	border-top:3px solid #dad9d7;
+	border-bottom:3px solid #dad9d7;
+	margin-bottom: 100px;
+}
+
+#content table tr {
+	height: 35px;
+}
+
+#content table:first-child tr:first-child {
+	padding-top:50px;
+	background-color: lightgray;
+	font-size: 0.8em;
+	font-weight: bold;
+	margin-bottom: 30px;
+	padding-bottom: 30px; 
+}
+
+#content table tr:first-child td:nth-child(1), #content table:nth-child(2) tr td:nth-child(1)
+	{
+	text-align: center;
+	width: 80px;
+}
+
+#content table tr:first-child td:nth-child(3), #content table:nth-child(2) tr td:nth-child(3)
+	{
+	text-align: center;
+	width: 50px;
+}
+
+#content table tr:first-child td:nth-child(4), #content table:nth-child(2) tr td:nth-child(4)
+	{
+	text-align: center;
+	width: 100px;
+}
+
+#content table tr:first-child td:nth-child(5) {
+	text-align: center;
+	width: 50px;
+}
+
+#content table tr:first-child td:nth-child(6) {
+	text-align: center;
+	width: 50px;
+}
+
+#content table:first-child tr:nth-child(2) td {
+	text-align: center;
+}
+
+#content table tr:nth-child(3){
+	padding: 0 0 0 30px;
+}
+
+#content table tr:nth-child(3) td {
+	padding-left: 60px;
+	padding-right: 60px;
+}
+
+
+
+#content table:first-child tr:last-child {
+	text-align: right;
+	height: 80px;
+}
+
+#content table:first-child tr:last-child Button {
+	width: 100px;
+}
+.imgInfo img{
+	width: 700px;
+	height: 400px;
+	
+}
+#content button{
+	width: 80px;
+	line-height: 40px;
+	height: 40px;
+	color: white;
+	font-weight: bold;
+	font-size:1.1em;
+	background-color: #351f66;
+	border: 1px solid #a7b496;
+	border-radius: 5px;
+}
+
+
+
+.name img {
+	width: 15px;
+	height: 15px;
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Cinema">
+	<resultMap type="Cinema" id="CinemaResult">
+		<result column="cinemaNo" property="cinemaNo"/>
+		<result column="cinemaName" property="cinemaName"/>
+	</resultMap>
+	<select id="selectCinema" parameterType="int" resultMap="CinemaResult">
+		SELECT C.* FROM CINEMA C, SCREEN S, SCREENUP SU
+		WHERE C.CINEMANO=S.CINEMANO AND S.SCREENNO=SU.SCREENNO AND MOVIENO=#{movieNo}
+		GROUP BY C.CINEMANO, CINEMANAME
+	</select>
+</mapper>

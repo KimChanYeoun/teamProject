@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+
+a.tooltips {
+	position: relative;
+	display: inline;
+}
+
+a.tooltips span {
+	position: absolute;
+	width: 140px;
+	color: #FFFFFF;
+	background: #000000;
+	height: 100px;
+	text-align: center;
+	display: none;
+	border-radius: 6px;
+}
+
+a.tooltips span:after {
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -8px;
+	width: 0;
+	height: 0;
+	border-top: 8px solid #000000;
+	border-right: 8px solid transparent;
+	border-left: 8px solid transparent;
+}
+
+a:hover.tooltips span {
+	display: block;
+	opacity: 0.8;
+	font-size: 0.8em;
+	top: -120px;
+	left: 50%;
+	margin-left: -76px;
+	z-index: 999;
+	clear: both;
+}
+
+.write_Wrap {
+	width : 100%;
+	background-color: #f2f2f2;
+	position: relative;
+	width: 100%;
+}
+
+.top_var {
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	background-color: #dad9d7;
+}
+
+.top_root {
+	width: 1250px;
+	height: 50px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.top_root ul li {
+	float: left;
+}
+
+.write_Form {
+	margin: 0 auto;
+	padding: 30px;
+	width: 1250px;
+	text-align: center;
+}
+
+.write_Form table {
+	margin: 0 auto;
+	width: 800px;
+	height: 650px;
+	width: 800px;
+	font-weight: bold;
+	border: 3px solid #351f66;
+	border-radius: 10px;
+}
+
+.write_Form caption h2 {
+	color: #4c4c4c;
+	margin: 0 0 20px 0;
+}
+
+.write_Form td:nth-child(1) {
+	height: 50px;
+	width: 120px;
+}
+
+.write_Form td:nth-child(2) {
+	height: 50px;
+	width: 600px;
+	text-align: left;
+}
+
+.write_Form table input[type=text] {
+	width: 600px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #f2f2f2;
+	border: 1px solid #dad9d7;
+	border-bottom: 1px solid #363636;
+}
+
+.write_Form table textarea {
+	width: 600px;
+	height: 350px;
+	background-color: #f2f2f2;
+	border: 1px solid #363636;
+}
+
+.write_Form tr:nth-last-child() {
+	padding: 10px;
+	height: 70px;
+}
+
+.write_Form input[type=submit] {
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	font-weight: bold;
+	background-color: #351f66;
+	color: white;
+	border: 1px ridge #4c4c4c;
+	border-radius: 5px;
+}
+
+.write_Form input[type=reset] {
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	font-weight: bold;
+	background-color: #351f66;
+	color: white;
+	border: 1px ridge #4c4c4c;
+	border-radius: 5px;
+}
+
+.write_Form input[type=button] {
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	font-weight: bold;
+	background-color: #351f66;
+	color: white;
+	border: 1px ridge #4c4c4c;
+	border-radius: 5px;
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MovieRating">
+	<resultMap type="MovieRating" id="MovieRatingResult">
+		<result column="movieRatingNo" property="movieRatingNo"/>
+		<result column="movieNo" property="movieNo"/>
+		<result column="memberId" property="memberId"/>
+		<result column="movieRatingPoint" property="movieRatingPoint"/>
+		<result column="movieRatingComment" property="movieRatingComment"/>
+	</resultMap>
+	<insert id="insertMovieRating" parameterType="MovieRating">
+		INSERT INTO MOVIERATING VALUES 
+			(MOVIERATING_SEQ.NEXTVAL, #{movieNo}, #{memberId}, #{movieRatingPoint}, #{movieRatingComment})
+	</insert>
+	<update id="modifyMovieRating" parameterType="MovieRating">
+		UPDATE MOVIERATING SET
+			MOVIERATINGPOINT=#{movieRatingPoint},
+			MOVIERATINGCOMMENT=#{movieRatingComment}
+			WHERE MOVIENO=#{movieNo} AND MEMBERID=#{memberId}
+	</update>
+	<delete id="deleteMovieRating" parameterType="int">
+		DELETE FROM MOVIERATING WHERE MOVIERATINGNO=#{movieRatingNo}
+	</delete>
+	<select id="getMovieRating" parameterType="int" resultMap="MovieRatingResult">
+		SELECT * FROM MOVIERATING WHERE MOVIENO=#{movieNo} ORDER BY MOVIERATINGNO DESC
+	</select>
+	<select id="getMovieRatingById" parameterType="MovieRating" resultType="MovieRating">
+		SELECT * FROM MOVIERATING WHERE MOVIENO=#{movieNo} AND MEMBERID=#{memberId}
+	</select>
+</mapper>

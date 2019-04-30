@@ -1,0 +1,158 @@
+@charset "UTF-8";
+
+* {
+	top: 0;
+	list-style: none;
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+}
+
+.content_info {
+	height: 50px;
+	line-height: 50px;
+	background-color: #dad9d7;
+}
+
+.select {
+	margin: 0 auto;
+	width: 1250px;
+	overflow: hidden;
+}
+
+.select ul li {
+	color: #333333;
+	font-weight: bold;
+}
+
+.select ul li:hover {
+	color: #59bec9;
+	font-weight: bold;
+}
+
+.content_info ul li {
+	float: left;
+	margin: 0 0.6%;
+}
+
+caption {
+	font-weight: bold;
+	font-size: 1.5em;
+	margin:30px 0 60px 0;
+}
+
+#content {
+	background-color:#f2f2f2;
+	padding-top: 50px;
+	margin : 0 auto;
+	border: 1px solid gray;
+}
+
+#content table {
+	padding-bottom:35px;
+	margin: 0 auto;
+	width: 1000px;
+	text-align: center;
+	border-bottom: 3px solid #8a8b8d;
+	border-spacing: 0 5px;
+}
+
+#content table tr {
+	height: 40px;
+	padding-right: 5px;
+}
+
+#content table tr td {
+	padding-right: 5px;
+}
+
+#content table tr:first-child {
+	font-weight: bold;
+	background-color: lightgray;
+}
+
+#content table tr td:nth-child(2) {
+	width: 100px;
+}
+
+#content table tr td:nth-child(3) {
+	width: 80px;
+}
+
+#content table tr td:nth-child(4) {
+	width: 100px;
+}
+
+#content table tr td:nth-child(5) {
+	width: 150px;
+}
+
+#content table tr td:nth-child(6) {
+	width: 250px;
+}
+
+#content table tr td:nth-child(7) {
+	width: 80px;
+}
+
+#content table tr td:nth-child(8) {
+	width: 80px;
+}
+
+#content table tr td:last-child {
+	width: 140px;
+}
+
+#search {
+	width: 800px;
+	padding-bottom: 50px;
+	margin : 20px auto;
+	text-align: center;
+}
+
+#search select {
+	height: 30px;
+	font-weight: bold;
+}
+
+#search input:nth-child(4) {
+	height: 26px;
+	padding-left: 5px;
+	font-size: 1.1em;
+}
+
+#search input:nth-child(5), #search input:nth-child(6) {
+	width: 60px;
+	height: 30px;
+	font-weight: bold;
+}
+
+#paging {
+	margin: 0 auto;
+	padding-top:30px;
+	width: 55%;
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+#search input[type=submit] {
+	width: 80px;
+	line-height: 40px;
+	height: 40px;
+	color: white;
+	font-weight: bold;
+	background-color: #351f66;
+	border: 1px solid #a7b496;
+	border-radius: 5px;
+}
+
+#search input[type=button]{
+	width: 80px;
+	line-height: 40px;
+	height: 40px;
+	color: white;
+	font-weight: bold;
+	background-color: #351f66;
+	border: 1px solid #a7b496;
+	border-radius: 5px;
+}

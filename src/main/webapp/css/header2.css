@@ -1,0 +1,165 @@
+@charset "UTF-8";
+
+* {
+	top: 0;
+	margin: 0;
+	padding: 0;
+	font-style: none;
+	list-style: none;
+	color: black;
+}
+
+a:link {
+	color: black;
+	text-decoration: none;
+}
+
+a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+a:hover {
+	color: gray;
+	text-decoration: none;
+}
+
+.header_wrap {
+	top: 0;
+	width: 100%;
+	height: 200px;
+	border: 1px solid black;
+}
+
+.barwrap_back {
+	width: 100%;
+	height:30px;
+	background-color: #fcf5ef;
+}
+
+.barwrap {
+	margin: 0 auto;
+	width: 66%;
+	height: 30px;
+}
+
+.barcontent {
+	overflow: hidden;
+}
+
+.barcontent img {
+	margin: 1px 0 0 0; width : 30px;
+	height: 20px;
+	width: 30px;
+}
+
+.barcontent ul li {
+	text-align: center;
+	float: left;
+	list-style: none;
+	width: 11%;
+	height: 30px;
+	line-height: 30px;
+	font-size: 0.9em;
+}
+
+.barcontent_right ul li {
+	float: right;
+	width: 8.5%;
+	height: 30px;
+	line-height: 30px;
+	font-size: 0.9em;
+}
+
+.bannerwrap {
+	width: 100%;
+	height: 170px;
+	border: 1px solid black;
+	position: relative;
+}
+
+.bannerimg {
+	top: 0px;
+	width: 100%;
+	position: absolute;
+	border: 1px solid red;
+	overflow: hidden;
+}
+
+.bannerimg img {
+	width: 100%;
+	height:170px;
+	z-index: -8;
+
+}
+
+.top_content {
+	left: 17%;
+	top: 0px;
+	margin: 0 auto;
+	position: absolute;
+	width: 66%;
+	height: 160px;
+	overflow: hidden;
+	border: 1px solid blue;
+}
+
+.top_content .logo {
+	width: 20%;
+	height: 160px;
+	border: 1px solid black;
+	float: left;
+}
+
+.logo img {
+	width: 100%;
+	height: 160px;
+}
+
+.top_content .mid_wrap {
+	margin: 0 auto;
+	width: 60%;
+	border: 1px solid violet;
+	height: 150px;
+}
+
+.mid_wrap .conname {
+	width: 100%;
+	text-align: center;
+	height: 60px;
+	line-height:60px;
+	border: 1px solid olive;
+}
+
+.mid_wrap .conbar {
+	width: 100%;
+	border: 1px solid balck;
+}
+
+.mid_wrap .conbar ul li {
+	list-style: none;
+	float: left;
+	margin: 0 3%;
+	width: 17%;
+	border: 1px solid red;
+}
+
+.serch {
+	position: absolute;
+	top: 0px;
+	left: 80%;
+	width: 20%;
+	border: 1px solid violet;
+}
+
+.movieser {
+	width: 100%;
+	border: 1px solid black;
+	height: 150px;
+}
+
+.movieimg {
+	width: 100%;
+	height: 120px;
+	border: 1px solid black;
+}

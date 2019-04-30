@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+* {
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+}
+
+.mymodify_Wrap {
+	width: 100%;
+	background-color: #f2f2f2;
+}
+
+.content_info {
+	height: 50px;
+	line-height: 50px;
+	background-color: #dad9d7;
+}
+
+.select {
+	margin: 0 auto;
+	width: 1250px;
+	overflow: hidden;
+}
+
+.select ul li {
+	color: #333333;
+	font-weight: bold;
+}
+
+.select ul li:hover {
+	color: #59bec9;
+	font-weight: bold;
+}
+
+.content_info ul li {
+	float: left;
+	margin: 0 0.6%;
+}
+
+.my_info {
+	width: 1000px;
+	padding: 20px;
+	margin: 0 auto;
+	border-bottom: 3px ridge #666666;
+}
+
+#modifyForm {
+	padding: 10px;
+}
+
+.modifyForm {
+	border-bottom: 3px solid gray;
+	width: 650px;
+	padding: 20px;
+	margin: 0 auto;
+}
+
+.modifyForm caption:first-child {
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.modifyForm table {
+	width: 595px;
+	margin: 0 auto;
+}
+
+.modifyForm table tr {
+	height: 50px;
+	font-size: 0.9em;
+}
+
+.modifyForm table tr td:nth-child(1) {
+	background-color: lightgray;
+	width: 150px;
+	padding-left: 30px;
+}
+
+.modifyForm table tr td:nth-child(2) input {
+	width: 230px;
+	height: 5px;
+	margin-left: 10px;
+	padding: 10px;
+	font-size: 1.1em;
+}
+
+.modifyForm table tr td:nth-child(3) input {
+	height: 30px;
+}
+
+.modifyForm table tr:last-child td {
+	text-align: center;
+	background-color: #f2f2f2;
+}
+
+#pwChkMsg {
+	width: 130px;
+}
+
+.modifyForm input[type=submit] {
+	width: 130px;
+	height: 50px;
+	background-color: #351f66;
+	color: white;
+	font-weight: bold;
+}
+
+.modifyForm input[type=reset] {
+	width: 100px;
+	height: 50px;
+	background-color: #351f66;
+	color: white;
+	font-weight: bold;
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Admin">
+	<resultMap type="Admin" id="AdminResult">
+		<result column="adminId" property="adminId" />
+		<result column="adminPw" property="adminPw" />
+	</resultMap>
+	<insert id="admininsert" parameterType="Admin">
+		INSERT INTO ADMIN(AdminId, AdminPw) VALUES(#{adminId}, #{adminPw})
+	</insert>
+	<delete id="admindelete" parameterType="int">
+		DELETE FROM ADMIN WHERE AdminId=#{adminId}
+	</delete>
+	<select id="getAdmin" parameterType="String"
+		resultType="Admin">
+		SELECT * FROM ADMIN WHERE AdminId=#{adminId}
+	</select>
+</mapper>

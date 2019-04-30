@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Movie">
+	<resultMap type="Movie" id="MovieResult">
+		<result column="movieNo" property="movieNo"/>
+		<result column="movieName" property="movieName"/>
+		<result column="movieDirector" property="movieDirector"/>
+		<result column="movieActor" property="movieActor"/>
+		<result column="movieGenre" property="movieGenre"/>
+		<result column="movieCountry" property="movieCountry"/>
+		<result column="movieGrade" property="movieGrade"/>
+		<result column="movieRunningtime" property="movieRunningtime"/>
+		<result column="movieRelease" property="movieRelease"/>
+		<result column="movieImage" property="movieImage"/>
+		<result column="movieTrailer" property="movieTrailer"/>
+		<result column="movieStory" property="movieStory"/>
+		<result column="movieRating" property="movieRating"/>
+	</resultMap>
+	<insert id="insertMovie" parameterType="Movie">
+		INSERT INTO MOVIE VALUES 
+			(MOVIE_SEQ.NEXTVAL,
+			#{movieName}, 
+			#{movieDirector}, 
+			#{movieActor}, 
+			#{movieGenre}, 
+			#{movieCountry}, 
+			#{movieGrade}, 
+			#{movieRunningtime}, 
+			#{movieRelease}, 
+			#{movieImage}, 
+			#{movieTrailer}, 
+			#{movieStory})
+	</insert>
+	<update id="modifyMovie" parameterType="Movie">
+		UPDATE MOVIE SET
+                MOVIENAME=#{movieName},
+                MOVIEDIRECTOR=#{movieDirector},
+                MOVIEACTOR=#{movieActor},
+                MOVIECOUNTRY=#{movieCountry},
+                MOVIEGRADE=#{movieGrade},
+                MOVIERUNNINGTIME=#{movieRunningtime},
+                MOVIERELEASE=#{movieRelease},
+                MOVIEIMAGE=#{movieImage},
+                MOVIETRAILER=#{movieTrailer},
+                MOVIESTORY=#{movieStory}
+                WHERE MOVIENO=#{movieNo}
+	</update>
+	<select id="getMovie" parameterType="int" resultType="Movie">
+		SELECT M.*, MOVIERATING FROM MOVIE M LEFT JOIN
+			(SELECT MOVIENO, AVG(MOVIERATINGPOINT) MOVIERATING FROM MOVIERATING GROUP BY MOVIENO) MR
+			ON M.MOVIENO=MR.MOVIENO WHERE M.MOVIENO=#{movieNo}
+	</select>
+	<select id="totCntMovie" resultType="int">
+		SELECT COUNT(*) FROM MOVIE
+	</select>
+	<select id="listMovie" parameterType="Movie" resultMap="MovieResult">
+		SELECT * FROM (SELECT ROWNUM RN, M.* FROM 
+			(SELECT M.*, MOVIERATING FROM MOVIE M LEFT JOIN 
+				(SELECT MOVIENO, AVG(MOVIERATINGPOINT) MOVIERATING FROM MOVIERATING GROUP BY MOVIENO) MR 
+					ON M.MOVIENO=MR.MOVIENO ORDER BY MOVIERELEASE DESC) M) WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	<select id="searchCntMovie" parameterType="Movie" resultType="int">
+		SELECT COUNT(*) FROM MOVIE WHERE 1=1
+			<if test="movieName!=''">
+   				AND MOVIENAME LIKE '%'||#{movieName}||'%'
+   			</if>
+   			<if test="movieGenre!='' and movieGenre!=null">
+   				AND MOVIEGENRE=#{movieGenre}
+   			</if>
+   			<if test="movieCountry!='' and movieCountry!=null">
+   				AND MOVIECOUNTRY=#{movieCountry}
+   			</if>
+   			<if test="minYear!=0 and maxYear!=0">
+   				AND TO_CHAR(MOVIERELEASE, 'YYYY') BETWEEN #{minYear} AND #{maxYear}
+   			</if>
+	</select>
+	<select id="searchMovie" parameterType="Movie" resultMap="MovieResult">
+		SELECT * FROM (SELECT ROWNUM RN, M.* FROM
+        	(SELECT M.*, MOVIERATING FROM MOVIE M LEFT JOIN 
+        		(SELECT MOVIENO, AVG(MOVIERATINGPOINT) MOVIERATING FROM MOVIERATING GROUP BY MOVIENO) MR 
+        			ON M.MOVIENO=MR.MOVIENO WHERE 1=1
+        			<if test="movieName!=''">
+        				AND MOVIENAME LIKE '%'||#{movieName}||'%'
+        			</if>
+        			<if test="movieGenre!='' and movieGenre!=null">
+        				AND MOVIEGENRE=#{movieGenre}
+        			</if>
+        			<if test="movieCountry!='' and movieCountry!=null">
+        				AND MOVIECOUNTRY=#{movieCountry}
+        			</if>
+        			<if test="minYear!=0 and maxYear!=0">
+        				AND TO_CHAR(MOVIERELEASE, 'YYYY') BETWEEN #{minYear} AND #{maxYear}
+        			</if>
+        			ORDER BY MOVIERELEASE DESC) M)
+        			WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	<select id="beforeReleaseMovie" resultMap="MovieResult">
+		SELECT * FROM MOVIE WHERE MOVIERELEASE > SYSDATE ORDER BY MOVIERELEASE
+	</select>
+	<select id="nowMovie" resultMap="MovieResult">
+		SELECT M.MOVIENO, MOVIENAME, MOVIEGRADE, MOVIEIMAGE, MOVIERELEASE, MOVIERATING FROM (SELECT M.*, MOVIERATING FROM MOVIE M LEFT JOIN (SELECT MOVIENO, AVG(MOVIERATINGPOINT) MOVIERATING FROM MOVIERATING GROUP BY MOVIENO) MR
+        ON M.MOVIENO=MR.MOVIENO) M INNER JOIN SCREENUP SU ON M.MOVIENO=SU.MOVIENO WHERE SYSDATE>=MOVIERELEASE
+        GROUP BY M.MOVIENO, MOVIENAME, MOVIEGRADE, MOVIEIMAGE, MOVIERELEASE, MOVIERATING
+	</select>
+	<select id="scheduleMovie" resultMap="MovieResult">
+		SELECT M.MOVIENO, MOVIENAME, MOVIEGRADE, MOVIEIMAGE, MOVIERELEASE, MOVIERATING FROM (SELECT M.*, MOVIERATING FROM MOVIE M LEFT JOIN (SELECT MOVIENO, AVG(MOVIERATINGPOINT) MOVIERATING FROM MOVIERATING GROUP BY MOVIENO) MR
+        ON M.MOVIENO=MR.MOVIENO) M INNER JOIN SCREENUP SU ON M.MOVIENO=SU.MOVIENO WHERE MOVIERELEASE>SYSDATE
+        GROUP BY M.MOVIENO, MOVIENAME, MOVIEGRADE, MOVIEIMAGE, MOVIERELEASE, MOVIERATING
+	</select>
+	<select id="selectMovie" resultMap="MovieResult">
+		SELECT M.MOVIENO, MOVIENAME, MOVIEGRADE, MOVIEIMAGE, MOVIERELEASE, MOVIERATING FROM (SELECT M.*, MOVIERATING FROM MOVIE M LEFT JOIN (SELECT MOVIENO, AVG(MOVIERATINGPOINT) MOVIERATING FROM MOVIERATING GROUP BY MOVIENO) MR
+        ON M.MOVIENO=MR.MOVIENO) M INNER JOIN SCREENUP SU ON M.MOVIENO=SU.MOVIENO WHERE SCREENUPENDDATE > SYSDATE-1
+        GROUP BY M.MOVIENO, MOVIENAME, MOVIEGRADE, MOVIEIMAGE, MOVIERELEASE, MOVIERATING ORDER BY MOVIERELEASE
+	</select>
+	<select id="activeBooking" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM SCREENUP WHERE MOVIENO=#{movieNo} AND SCREENUPENDDATE>=SYSDATE
+	</select>
+	<select id="movieSelection" resultMap="MovieResult">
+		SELECT * FROM (SELECT ROWNUM RN, M.* FROM(SELECT M.MOVIENO, MOVIEIMAGE, MOVIETRAILER FROM (SELECT M.*, MOVIERATING FROM MOVIE M LEFT JOIN (SELECT MOVIENO, AVG(MOVIERATINGPOINT) MOVIERATING FROM MOVIERATING GROUP BY MOVIENO) MR
+        ON M.MOVIENO=MR.MOVIENO) M INNER JOIN SCREENUP SU ON M.MOVIENO=SU.MOVIENO WHERE SCREENUPENDDATE > SYSDATE-1
+        GROUP BY M.MOVIENO, MOVIEIMAGE, MOVIETRAILER, MOVIERELEASE ORDER BY MOVIERELEASE DESC) M) WHERE RN BETWEEN 1 AND 10
+	</select>
+</mapper>

@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+
+.write_Wrap{
+	width: 100%;
+}
+.write_Wrap .top_var{
+	background-color:#dad9d7 ;
+	height: 40px;
+	width: 100%;
+}

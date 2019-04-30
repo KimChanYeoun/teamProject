@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Screenup">
+	<resultMap type="Screenup" id="ScreenupResult">
+		<result column="movieName" property="movieName"/>
+		<result column="movieRating" property="movieRating"/>
+		<result column="movieRelease" property="movieRelease"/>
+		<result column="movieImage" property="movieImage"/>
+		<result column="cinemaName" property="cinemaName"/>
+		<result column="screenName" property="screenName"/>
+		<result column="cinemaNo" property="cinemaNo"/>
+		<result column="screenupNo" property="screenupNo"/>
+		<result column="movieNo" property="movieNo"/>
+		<result column="screenNo" property="screenNo"/>
+		<result column="screenupStartdate" property="screenupStartdate"/>
+		<result column="screenupEnddate" property="screenupEnddate"/>
+	</resultMap>
+	<insert id="insertScreenup" parameterType="Screenup">
+		INSERT INTO SCREENUP VALUES
+			(SCREENUP_SEQ.NEXTVAL, #{movieNo}, #{screenNo}, #{screenupStartdate}, #{screenupEnddate})
+	</insert>
+	<select id="getScreenup" parameterType="int" resultType="Screenup">
+		SELECT * FROM SCREENUP WHERE SCREENUPNO=#{screenupNo}
+	</select>
+	<select	id="searchScreenup" parameterType="Screenup" resultMap="ScreenupResult">
+		SELECT CINEMANAME, SCREENNAME, S.CINEMANO, SU.*
+			FROM CINEMA C, SCREEN S, SCREENUP SU
+			WHERE C.CINEMANO=S.CINEMANO
+				AND S.SCREENNO=SU.SCREENNO
+				<if test="movieNo!=''">
+					AND MOVIENO=#{movieNo}
+				</if>
+				<if test="cinemaNo!=''">
+					C.CINEMANO=#{cinemaNo}
+				</if>
+				<if test="selectedDate!=''">
+					AND ${selectedDate} BETWEEN SCREENUPSTARTDATE AND SCREENUPENDDATE
+				</if>
+	</select>
+	<select id="getScreenupDate" parameterType="String" resultType="Screenup">
+		SELECT SCREENUPSTARTDATE, SCREENUPENDDATE FROM SCREENUP
+			WHERE SCREENNO=#{screenNo} 
+			AND SCREENUPENDDATE >= SYSDATE
+	</select>
+	<select id="selectDate" parameterType="Screenup" resultMap="ScreenupResult">
+		SELECT SCREENUPSTARTDATE, SCREENUPENDDATE FROM SCREEN S, SCREENUP SU
+			WHERE S.SCREENNO=SU.SCREENNO 
+			AND MOVIENO=#{movieNo} 
+			AND CINEMANO=#{cinemaNo} 
+			ORDER BY SCREENUPSTARTDATE
+	</select>
+	<select id="selectScreen" parameterType="Screenup" resultMap="ScreenupResult">
+		SELECT S.SCREENNO, SCREENNAME FROM SCREEN S, SCREENUP SU 
+			WHERE S.SCREENNO=SU.SCREENNO
+			AND MOVIENO=#{movieNo} 
+			AND CINEMANO=#{cinemaNo} 
+			AND #{selectedDate} BETWEEN SCREENUPSTARTDATE AND SCREENUPENDDATE
+	</select>
+	<select id="selectedAll" parameterType="Screenup" resultType="Screenup">
+		SELECT * FROM SCREENUP 
+		WHERE MOVIENO=#{movieNo}  
+		AND SCREENNO=#{screenNo}
+		AND #{selectedDate} BETWEEN SCREENUPSTARTDATE AND SCREENUPENDDATE
+	</select>
+</mapper>

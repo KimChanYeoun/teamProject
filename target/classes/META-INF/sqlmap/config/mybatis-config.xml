@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.tj.mac.model.Booking" alias="Booking"/>
+		<typeAlias type="com.tj.mac.model.BookingSeat" alias="BookingSeat"/>
+		<typeAlias type="com.tj.mac.model.Cinema" alias="Cinema"/>
+		<typeAlias type="com.tj.mac.model.Movie" alias="Movie"/>
+		<typeAlias type="com.tj.mac.model.MovieRating" alias="MovieRating"/>
+		<typeAlias type="com.tj.mac.model.Screen" alias="Screen"/>
+		<typeAlias type="com.tj.mac.model.Screenup" alias="Screenup"/>
+		<typeAlias type="com.tj.mac.model.Seat" alias="Seat"/>
+		<typeAlias type="com.tj.mac.model.SeatState" alias="SeatState"/>
+		<typeAlias type="com.tj.mac.model.Time" alias="Time"/>
+		<typeAlias type="com.tj.mac.model.Qna" alias="Qna" />
+		<typeAlias type="com.tj.mac.model.Admin" alias="Admin"/>
+		<typeAlias type="com.tj.mac.model.Member" alias="Member"/>
+		<typeAlias type="com.tj.mac.model.MemberInfo" alias="MemberInfo"/>
+		<typeAlias type="com.tj.mac.model.MemberGrade" alias="MemberGrade"/>
+		<typeAlias type="com.tj.mac.model.Notice" alias="Notice"/>
+		<typeAlias type="com.tj.mac.model.Event" alias="Event"/>
+		<typeAlias type="com.tj.mac.model.Item" alias="Item"/>
+		<typeAlias type="com.tj.mac.model.Purchase" alias="Purchase"/>
+		<typeAlias type="com.tj.mac.model.PurchaseItem" alias="PurchaseItem"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="META-INF/sqlmap/mappers/Booking.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/BookingSeat.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/Cinema.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/Movie.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/MovieRating.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/Screen.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/Screenup.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/Seat.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/SeatState.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/Time.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/Qna.xml" />
+		<mapper resource="META-INF/sqlmap/mappers/Admin.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/Member.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/MemberInfo.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/MemberGrade.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/Notice.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/Event.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/Item.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/Purchase.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/PurchaseItem.xml"/>
+	</mappers>
+</configuration>

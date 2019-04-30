@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+.detail_Wrap {
+	width: 100%;
+	padding: 2px 0 50px 0;
+	background-color: #f2f2f2;
+}
+
+.content_info {
+	height: 50px;
+	line-height: 50px;
+	background-color: #dad9d7;
+}
+
+.select {
+	margin: 0 auto;
+	width: 1250px;
+	overflow: hidden;
+}
+
+.select ul li {
+	float: left;
+	color: #333333;
+	font-weight: bold;
+	color: #333333;
+}
+
+.select ul li:hover {
+	color: #59bec9;
+	font-weight: bold;
+}
+
+.item_title {
+	text-decoration: underline;
+	margin: 0 auto;
+	width: 750px;
+	height: 60px;
+	line-height: 60px;
+	text-align: left;
+}
+
+#content {
+	margin: 0 auto;
+	margin-bottom: 50px;
+	border: 1px solid black;
+	width: 750px;
+	text-align: center;
+	border: 1px solid black;
+}
+
+#content table {
+	margin: 0 auto;
+}
+
+#content tr td {
+	margin: 10px;
+}
+
+#content tr:nth-child(2) {
+	margin: 10px 0 10px 0;
+	height: 40px;
+	line-height: 40px;
+	font-size: 1.1em;
+	height: 40px;
+}
+
+#content img {
+	width: 500px;
+	height: 550px;
+}
+
+#content button {
+	margin: 5px;
+	width: 150px;
+	line-height: 50px;
+	height: 50px;
+	color: white;
+	font-weight: bold;
+	font-size: 1.2em;
+	background-color: #351f66;
+	border: 1px solid #a7b496;
+	border-radius: 10px;
+	width: 150px;
+}
+
+/* modify  */
+.modify_Wrap {
+	width: 100%;
+	padding: 2px 0 50px 0;
+	background-color: #f2f2f2;
+}
+
+.modify_content {
+	margin: 0 auto;
+	margin-bottom: 50px;
+	border: 1px solid black;
+	width: 750px;
+	text-align: center;
+	border: 1px solid black;
+}
+
+.modify_content table {
+	margin: 0 auto;
+}
+
+.modify_content tr td {
+	margin: 10px;
+	border: 1px solid black;
+}
+
+.modify_content tr:nth-child(2) {
+	margin: 10px 0 10px 0;
+	height: 500px;
+	line-height: 40px;
+	font-size: 1.1em;
+	height: 40px;
+}
+
+.modify_content img {
+	width: 500px;
+	height: 550px;
+}
+
+.modify_content input[type=file] {
+	display: none;
+}
+
+.modify_content input[type=button] {
+	margin: 5px;
+	width: 150px;
+	line-height: 50px;
+	height: 50px;
+	color: white;
+	font-weight: bold;
+	font-size: 1.2em;
+	background-color: #351f66;
+	border: 1px solid #a7b496;
+	border-radius: 10px;
+	width: 150px;
+}
+
+.modify_content input[type=submit] {
+	margin: 5px;
+	width: 150px;
+	line-height: 50px;
+	height: 50px;
+	color: white;
+	font-weight: bold;
+	font-size: 1.2em;
+	background-color: #351f66;
+	border: 1px solid #a7b496;
+	border-radius: 10px;
+	width: 150px;
+}

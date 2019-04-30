@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Qna">
+	<resultMap type="Qna" id="QnaResult">
+		<result property="qnaNo" column="qnaNo" />
+		<result property="qnaTitle" column="qnaTitle" />
+		<result property="qnaContent" column="qnaContent" />
+		<result property="qnaFile" column="qnaFile" />
+		<result property="qnaHit" column="qnaHit" />
+		<result property="qnaDate" column="qnaDate" />
+		<result property="qnaIp" column="qnaIp" />
+		<result property="qnanoPw" column="qnanoPw" />
+		<result property="qnaGroup" column="qnaGroup" />
+		<result property="qnaStep" column="qnaStep" />
+		<result property="qnaIndent" column="qnaIndent" />
+		<result property="memberId" column="memberId" />
+		<result property="adminId" column="adminId" />
+		<result property="memberName" column="memberName" />
+	</resultMap>
+
+
+	<!-- QnA 글 갯수 가져오기 -->
+	<select id="qna_Cnt" resultType="int">
+		SELECT COUNT(*) FROM QNA
+	</select>
+
+	<!-- QnA 리스트 불러오기 . (최근글 순서 + 그룹별) -->
+	<select id="qna_ListAll" resultMap="QnaResult"
+		parameterType="Qna">
+		SELECT * FROM(
+		SELECT ROWNUM RN ,A.* FROM(
+		SELECT
+		Q.*,M.MEMBERNAME FROM
+		QNA Q, MEMBER M
+		WHERE Q.MEMBERID=M.MEMBERID(+)
+		ORDER
+		BY QNAGROUP DESC, QNASTEP)A)
+		WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+
+	<!-- QnA 리스트 ( 가장 많은 힛트수 순서 3개) -->
+	<select id="qna_HitList" resultMap="QnaResult">
+		SELECT * FROM(
+		SELECT ROWNUM
+		RN ,A.* FROM(
+		SELECT Q.*,M.MEMBERNAME
+		FROM QNA Q, MEMBER M
+		WHERE
+		Q.MEMBERID=M.MEMBERID
+		ORDER BY QNAHIT DESC)A)
+		WHERE RN BETWEEN
+		1 AND 4
+	</select>
+
+	<!-- QnA 리스트 페이징 -->
+	<select id="qna_paging" resultMap="QnaResult">
+		SELECT * FROM(
+		SELECT ROWNUM RN
+		,A.* FROM (
+		SELECT * FROM QNA
+		ORDER BY QNANO)A)
+		WHERE RN BETWEEN
+		#{startRow} AND #{endRow}
+	</select>
+
+	<!-- QnA Serch 기능 -->
+	<select id="qna_Serch" parameterType="Qna" resultMap="QnaResult">
+
+		SELECT *
+		FROM(
+		SELECT ROWNUM RN, A.* FROM(
+		SELECT Q.*,M.MEMBERNAME FROM
+		QNA Q,
+		MEMBER M WHERE Q.MEMBERID=M.MEMBERID(+)
+		AND (Q.QNANO LIKE
+		'%'||#{qna_Serch}||'%' OR
+		Q.QNATITLE LIKE '%'||#{qna_Serch}||'%' OR
+		M.MEMBERNAME LIKE '%'||#{qna_Serch}||'%' OR
+		QNAFILE LIKE
+		'%'||#{qna_Serch}||'%')
+		ORDER BY QNAGROUP DESC, QNASTEP)A)
+		WHERE RN
+		BETWEEN #{startRow} AND #{endRow}
+
+	</select>
+
+	<!-- Qna Serch 검색 갯수 가져오기 -->
+	<select id="qna_serTot" parameterType="String" resultType="int">
+		SELECT COUNT(QNATITLE)
+		FROM
+		QNA Q, MEMBER M
+		WHERE Q.MEMBERID=M.MEMBERID(+)
+		AND (Q.QNANO LIKE '%'||#{qna_Serch}||'%' OR
+		Q.QNATITLE LIKE
+		'%'||#{qna_Serch}||'%' OR
+		M.MEMBERNAME LIKE '%'||#{qna_Serch}||'%' OR
+		Q.QNAFILE LIKE '%'||#{qna_Serch}||'%' )
+		ORDER BY QNAGROUP DESC, QNASTEP
+	</select>
+
+
+
+	<!-- 글쓰기 -->
+	<insert id="qna_Write" parameterType="Qna">
+		INSERT INTO QNA VALUES(
+		QNA_SEQ.NEXTVAL,
+		#{qnaTitle},
+		#{qnaContent},
+		#{qnaFile},
+		0,
+		SYSDATE,
+		#{qnaIp},
+		#{qnanoPw},
+		QNA_SEQ.CURRVAL,
+		0,
+		0,
+		#{memberId},
+		null
+		)
+	</insert>
+
+	<!-- 답변글을 위한 스텝설정. -->
+
+	<update id="qna_Re" parameterType="Qna">
+	<![CDATA[
+		UPDATE QNA SET
+		QNASTEP =
+		QNASTEP+1
+		WHERE QNAGROUP = #{qnaGroup} AND QNASTEP>#{qnaStep}
+	]]>
+	
+	</update>
+
+	<!-- 답변글쓰기 -->
+	<insert id="qna_ReWrite" parameterType="Qna">
+		INSERT INTO
+		QNA(QNANO,
+		QNATITLE, QNACONTENT, QNAFILE, QNAHIT, QNADATE,
+		QNAIP,QNANOPW,QNAGROUP,QNASTEP,QNAINDENT,MEMBERID,ADMINID)
+		VALUES(
+		QNA_SEQ.NEXTVAL,
+		#{qnaTitle},
+		#{qnaContent},
+		#{qnaFile},
+		#{qnaHit},
+		SYSDATE,
+		#{qnaIp},
+		#{qnanoPw},
+		#{qnaGroup},
+		#{qnaStep}+1,
+		#{qnaIndent}+1,
+		#{memberId},
+		#{adminId})
+	</insert>
+
+
+	<!-- 글 수정 하기 -->
+	<update id="qna_Modify" parameterType="Qna">
+		UPDATE QNA SET
+		QNATITLE=#{qnaTitle},
+		QNACONTENT=#{qnaContent},
+		QNAFILE=#{qnaFile},
+		QNADATE=SYSDATE,
+		QNAIP=#{qnaIp},
+		QNANOPW=#{qnanoPw}
+		WHERE
+		QNANO=#{qnaNo}
+	</update>
+
+	<!-- 글삭제 -->
+	<delete id="qna_Delete">
+		DELETE FROM QNA WHERE
+		QNANO=#{qnaNo}
+	</delete>
+
+
+	<!-- 히트업. -->
+	<update id="hit_up" parameterType="int">
+		UPDATE QNA SET
+		QNAHIT =
+		QNAHIT+1 WHERE
+		QNANO=#{qnaNo}
+
+	</update>
+
+	<!-- 본문 보기 . -->
+	<select id="qna_Content" parameterType="int" resultType="Qna">
+
+		SELECT *
+		FROM QNA WHERE QNANO=#{qnaNo}
+
+	</select>
+
+	<!--다음글 -->
+	<select id="qna_ContentNext" parameterType="int"
+		resultType="Qna">
+	<![CDATA[
+		SELECT * FROM QNA
+		WHERE QNANO=(SELECT MIN(QNANO) FROM QNA WHERE QNANO>#{qnaNo})
+	]]>
+	</select>
+
+	<!-- 이전 글 -->
+	<select id="qna_ContentPrevious" parameterType="int"
+		resultType="Qna">
+	<![CDATA[
+		SELECT * FROM QNA
+		WHERE QNANO=(SELECT MAX(QNANO) FROM QNA WHERE QNANO<#{qnaNo})
+		]]>
+	</select>
+
+
+</mapper>

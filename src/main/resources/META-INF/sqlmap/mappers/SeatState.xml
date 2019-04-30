@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SeatState">
+	<resultMap type="SeatState" id="SeatStateResult">
+		<result column="seatStateNo" property="seatStateNo"/>
+		<result column="seatNo" property="seatNo"/>
+		<result column="timeNo" property="timeNo"/>
+		<result column="screenNo" property="screenNo"/>
+		<result column="seatStateDate" property="seatStateDate"/>
+	</resultMap>
+	<insert id="insertSeatState" parameterType="SeatState">
+		INSERT INTO SEATSTATE VALUES (SEATSTATE_SEQ.NEXTVAL, #{seatNo}, #{timeNo}, #{screenNo}, #{seatStateDate})
+	</insert>
+	<delete id="deleteSeatState" parameterType="SeatState">
+		DELETE FROM SEATSTATE
+			WHERE SEATNO=#{seatNo}
+				AND TIMENO=#{timeNo}
+				AND SCREENNO=#{screenNo}
+				AND SEATSTATEDATE=#{seatStateDate}
+	</delete>
+	<select id="getSeatState" parameterType="SeatState" resultMap="SeatStateResult">
+		SELECT * FROM SEATSTATE
+			WHERE TIMENO=#{timeNo}
+				AND SCREENNO=#{screenNo}
+				AND SEATSTATEDATE=#{seatStateDate}
+				<if test="seatNo!=null">
+					AND	SEATNO=#{seatNo}
+				</if>
+	</select>
+</mapper>
