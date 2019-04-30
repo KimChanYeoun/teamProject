@@ -1,12 +1,12 @@
-º» ÇÁ·ÎÁ§Æ®´Â MAC(Movie and Cinema) ¼Ò½º °øÀ¯ ÀúÀå°ø°£ÀÔ´Ï´Ù.
+ë³¸ í”„ë¡œì íŠ¸ëŠ” MAC(Movie and Cinema) ì†ŒìŠ¤ ê³µìœ  ì €ì¥ê³µê°„ì…ë‹ˆë‹¤.
 
-ÇÁ·ÎÁ§Æ®¸í: MAC (Movie and cinema)
+í”„ë¡œì íŠ¸ëª…: MAC (Movie and cinema)
 
-Âü¿©ÀÎ¿ø	4¸í
+ì°¸ì—¬ì¸ì›	4ëª…
 
-±â°£	2019.04.08 ~ 2019.04.26 (18ÀÏ)
+ê¸°ê°„	2019.04.08 ~ 2019.04.26 (18ì¼)
 
-°³¹ßÈ¯°æ	OS: Windows 7 Professional K
+ê°œë°œí™˜ê²½	OS: Windows 7 Professional K
 
 	WAS: Apache Tomcat 8.5
 
@@ -14,19 +14,17 @@
 
 	Language: Java Platform 8 , JSP & Servlet
 
-	FrameWork: ÀüÀÚÁ¤ºÎ Ç¥ÁØ ÇÁ·¹ÀÓ¿öÅ©(Spring Frame), Mybatis Àû¿ë
-
-MybatisÀû¿ë
+	FrameWork: ì „ìì •ë¶€ í‘œì¤€ í”„ë ˆì„ì›Œí¬(Spring Frame), Mybatis ì ìš©
 
 	Web: HTML5, CSS/CSS3, JavaScript
 
 	Tool: Spring tool suite 3.9.5, Sqldeveloper, eXERD (E-R Modeling Tool)
 
 	Open Source: jQuery v3.3.1, jQuery UI v.1.12.1, cos-26Dec2008 ,
-                     jquery-ui-1.11.4,   jquery-easyui-1.4.5,Sementic ui, ´ÙÀ½Áöµµ API
+                     jquery-ui-1.11.4,   jquery-easyui-1.4.5,Sementic ui, ë‹¤ìŒì§€ë„ API
 
-- ÇÁ·ÎÁ§Æ® ½ÇÇà ³ìÈ­È­¸é - https://youtu.be/cFQ2k5kih4g
+- í”„ë¡œì íŠ¸ ì‹¤í–‰ ë…¹í™”í™”ë©´ - https://youtu.be/cFQ2k5kih4g
 
-- ¿µÈ­ ¿¹¸Å¸¦ À§ÇÑ ÅëÇÕ À¥ »çÀÌÆ® 
+- ì˜í™” ì˜ˆë§¤ë¥¼ ìœ„í•œ í†µí•© ì›¹ ì‚¬ì´íŠ¸ 
 
-- ¿µÈ­ ¿¹¸Å ½Ã½ºÅÛÀº ÀÌ¿ëÀÚÀÇ ±ÇÇÑ¿¡ µû¶ó ´ÙÀ½ÀÇ ±â´ÉÀ» Á¦°øÇÑ´Ù.
+- ì˜í™” ì˜ˆë§¤ ì‹œìŠ¤í…œì€ ì´ìš©ìì˜ ê¶Œí•œì— ë”°ë¼ ë‹¤ìŒì˜ ê¸°ëŠ¥ì„ ì œê³µí•œë‹¤.
